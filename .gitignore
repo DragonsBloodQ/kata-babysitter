@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/BabysitterKata/.vs/BabysitterKata/v15
+/BabysitterKata/BabysitterKata/obj
+/BabysitterKata/BabysitterKata/bin/Debug/netcoreapp2.1
