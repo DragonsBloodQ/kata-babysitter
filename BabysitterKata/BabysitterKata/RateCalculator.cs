@@ -15,5 +15,10 @@ namespace BabysitterKata
         {
             return numberOfHours * 20;
         }
+
+        public static int FamilyBBeforeTen(int numberOfHours)
+        {
+            return numberOfHours * 12;
+        }
     }
 }
