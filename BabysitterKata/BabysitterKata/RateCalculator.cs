@@ -50,6 +50,8 @@ namespace BabysitterKata
             string endHourString = endTime.Split(":")[0];
             int endHour = Convert.ToInt32(endHourString);
 
+            // Given the range of times during which babysitting can take place, we
+            // are able to normalize around the 5PM early start time.
             int normalizedStart = NormalizeTime(startHour);
             int normalizedEnd = NormalizeTime(endHour);
 
