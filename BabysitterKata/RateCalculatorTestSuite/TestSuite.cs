@@ -42,5 +42,12 @@ namespace RateCalculatorTestSuite
             Assert.Equal(16, RateCalculator.FamilyBAfterTwelve(1));
             Assert.Equal(64, RateCalculator.FamilyBAfterTwelve(4));
         }
+
+        [Fact]
+        public void FamilyCProperlyPaysTwentyOneDollarsPerHourBeforeNinePM()
+        {
+            Assert.Equal(21, RateCalculator.FamilyCBeforeNine(1));
+            Assert.Equal(84, RateCalculator.FamilyCBeforeNine(4));
+        }
     }
 }
