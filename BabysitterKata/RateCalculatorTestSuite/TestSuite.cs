@@ -107,5 +107,13 @@ namespace RateCalculatorTestSuite
             Assert.Equal("12:00", testProgram.HandleRawEndTime("12:00 AM"));
             Assert.Equal("3:48", testProgram.HandleRawEndTime("3:48 AM"));
         }
+
+        [Fact]
+        public void EndBeforeStartReturnsErrorMessage()
+        {
+            Assert.False(testProgram.AreStartAndEndCompatible("3:00 AM", "11:00 PM"));
+            Assert.False(testProgram.AreStartAndEndCompatible("12:00 AM", "6:00 PM"));
+            Assert.False(testProgram.AreStartAndEndCompatible("1:00 AM", "6:28 PM"));
+        }
     }
 }

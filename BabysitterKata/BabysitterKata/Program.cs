@@ -43,5 +43,28 @@ namespace BabysitterKata
 
             return timePortion;
         }
+
+        public bool AreStartAndEndCompatible(string startTime, string endTime)
+        {
+            var startTimeAndAmPmSplit = startTime.Split(" ");
+            var startTimePortion = startTimeAndAmPmSplit[0];
+            var startTimeAmPm = startTimeAndAmPmSplit[1];
+
+            var startTimeHourValue = Convert.ToInt32(startTimePortion.Split(":")[0]);
+
+            var endTimeAndAmPmSplit = endTime.Split(" ");
+            var endTimePortion = endTimeAndAmPmSplit[0];
+            var endTimeAmPm = endTimeAndAmPmSplit[1];
+
+            var endTimeHourValue = Convert.ToInt32(endTimePortion.Split(":")[0]);
+
+            int normalizedStart = Global.NormalizeTime(startTimeHourValue);
+            int normalizedEnd = Global.NormalizeTime(endTimeHourValue);
+
+            if (normalizedEnd < normalizedStart)
+                return false;
+
+            return true;
+        }
     }
 }
