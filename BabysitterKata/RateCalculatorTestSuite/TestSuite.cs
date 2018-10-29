@@ -7,6 +7,9 @@ namespace RateCalculatorTestSuite
 {
     public class TestSuite
     {
+        // Test level instance of Program object.
+        Program testProgram = new Program();
+
         [Fact]
         public void FamilyAProperlyPaysFifteenDollarsPerHourBeforeElevenPM()
         {
@@ -77,9 +80,16 @@ namespace RateCalculatorTestSuite
         [Fact]
         public void StartTimeErrorHandlingMethodProperlyHandlesStartTimeThatIsTooEarly()
         {
-            var testProgram = new Program();
             Assert.Equal("Start time is too early", testProgram.HandleRawStartTime("4:00 PM"));
             Assert.Equal("Start time is too early", testProgram.HandleRawStartTime("10:00 AM"));
+        }
+
+        [Fact]
+        public void StartTimeErrorHandlingMethodProperlyReturnsValidStartTime()
+        {
+            Assert.Equal("5:00", testProgram.HandleRawStartTime("5:00 PM"));
+            Assert.Equal("11:00", testProgram.HandleRawStartTime("11:00 PM"));
+            Assert.Equal("3:00", testProgram.HandleRawStartTime("3:00 AM"));
         }
     }
 }
