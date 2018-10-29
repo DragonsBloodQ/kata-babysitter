@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using BabysitterKata;
+using System.Collections.Generic;
 
 namespace RateCalculatorTestSuite
 {
@@ -55,6 +56,13 @@ namespace RateCalculatorTestSuite
         {
             Assert.Equal(15, RateCalculator.FamilyCAfterNine(1));
             Assert.Equal(105, RateCalculator.FamilyCAfterNine(7));
+        }
+
+        [Fact]
+        public void CorrectNumberOfHoursInEachRateDivisionReturnedWhenGivenStartAndEndTimes()
+        {
+            Assert.Equal(new[] { 6, 1 }, RateCalculator.GetHoursSplit("A", "5:00", "12:00"));
+            Assert.Equal(new[] { 5, 2, 1 }, RateCalculator.GetHoursSplit("B", "5:00", "1:00"));
         }
     }
 }
