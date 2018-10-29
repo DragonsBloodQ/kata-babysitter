@@ -42,7 +42,7 @@ namespace BabysitterKata
             return numberOfHours * 15;
         }
 
-        public static IEnumerable<int> GetHoursSplit(string family, string startTime, string endTime)
+        public static IEnumerable<int> GetHoursSplit(string startTime, string endTime, string family)
         {
             string startHourString = startTime.Split(":")[0];
             int startHour = Convert.ToInt32(startHourString);
@@ -88,6 +88,27 @@ namespace BabysitterKata
             var afterTwelve = hourBreakdown.Count(x => x > 6);
 
             return new[] { beforeTen, betweenTenAndTwelve, afterTwelve };
+        }
+
+        public static int GetRateForNight(string startTime, string endTime, string family)
+        {
+            int[] hoursSplit = GetHoursSplit(startTime, endTime, family).ToArray();
+
+            switch (family)
+            {
+                case "A":
+                    return FamilyABefore11(hoursSplit[0]) + FamilyAAfterEleven(hoursSplit[1]);
+
+                case "B":
+                    return FamilyBBeforeTen(hoursSplit[0]) + FamilyBBetweenTenAndTwelve(hoursSplit[1]) +
+                        FamilyBAfterTwelve(hoursSplit[2]);
+
+                case "C":
+                    return FamilyCBeforeNine(hoursSplit[0]) + FamilyCAfterNine(hoursSplit[1]);
+
+                default:
+                    throw new FormatException("Family indicator not recognized. Please try again");
+            }
         }
 
         private static IEnumerable<int> FamilyCHourBreakDown(IEnumerable<int> hourBreakdown)

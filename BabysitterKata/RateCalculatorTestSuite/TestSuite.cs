@@ -61,9 +61,17 @@ namespace RateCalculatorTestSuite
         [Fact]
         public void CorrectNumberOfHoursInEachRateDivisionReturnedWhenGivenStartAndEndTimes()
         {
-            Assert.Equal(new[] { 6, 1 }, RateCalculator.GetHoursSplit("A", "5:00", "12:00"));
-            Assert.Equal(new[] { 5, 2, 1 }, RateCalculator.GetHoursSplit("B", "5:00", "1:00"));
-            Assert.Equal(new[] { 1, 6 }, RateCalculator.GetHoursSplit("C", "8:00", "3:00"));
+            Assert.Equal(new[] { 6, 1 }, RateCalculator.GetHoursSplit("5:00", "12:00", "A"));
+            Assert.Equal(new[] { 5, 2, 1 }, RateCalculator.GetHoursSplit("5:00", "1:00", "B"));
+            Assert.Equal(new[] { 1, 6 }, RateCalculator.GetHoursSplit("8:00", "3:00", "C"));
+        }
+
+        [Fact]
+        public void CorrectTotalReturnedWhenCallingMasterFunctionWithStartTimeEndTimeAndFamily()
+        {
+            Assert.Equal(84, RateCalculator.GetRateForNight("7:00", "2:00", "B"));
+            Assert.Equal(30, RateCalculator.GetRateForNight("5:00", "7:08", "A"));
+            Assert.Equal(138, RateCalculator.GetRateForNight("6:00", "2:00", "C"));
         }
     }
 }
