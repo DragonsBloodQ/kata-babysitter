@@ -67,7 +67,7 @@ namespace RateCalculatorTestSuite
         }
 
         [Fact]
-        public void CorrectTotalReturnedWhenCallingMasterFunctionWithStartTimeEndTimeAndFamily()
+        public void CorrectTotalReturnedWhenCallingGetRateForNightMethodWithStartTimeEndTimeAndFamily()
         {
             Assert.Equal(84, RateCalculator.GetRateForNight("7:00", "2:00", "B"));
             Assert.Equal(30, RateCalculator.GetRateForNight("5:00", "7:08", "A"));
