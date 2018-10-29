@@ -109,7 +109,7 @@ namespace RateCalculatorTestSuite
         }
 
         [Fact]
-        public void EndBeforeStartReturnsErrorMessage()
+        public void EndBeforeStartReturnsFalseWhenCheckedForCompatibility()
         {
             Assert.False(testProgram.AreStartAndEndCompatible("3:00 AM", "11:00 PM"));
             Assert.False(testProgram.AreStartAndEndCompatible("12:00 AM", "6:00 PM"));
