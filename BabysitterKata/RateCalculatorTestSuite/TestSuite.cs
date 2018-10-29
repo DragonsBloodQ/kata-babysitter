@@ -73,5 +73,13 @@ namespace RateCalculatorTestSuite
             Assert.Equal(30, RateCalculator.GetRateForNight("5:00", "7:08", "A"));
             Assert.Equal(138, RateCalculator.GetRateForNight("6:00", "2:00", "C"));
         }
+
+        [Fact]
+        public void StartTimeErrorHandlingMethodProperlyHandlesStartTimeThatIsTooEarly()
+        {
+            var testProgram = new Program();
+            Assert.Equal("Start time is too early", testProgram.HandleRawStartTime("4:00 PM"));
+            Assert.Equal("Start time is too early", testProgram.HandleRawStartTime("10:00 AM"));
+        }
     }
 }
