@@ -111,9 +111,23 @@ namespace RateCalculatorTestSuite
         [Fact]
         public void EndBeforeStartReturnsFalseWhenCheckedForCompatibility()
         {
-            Assert.False(testProgram.AreStartAndEndCompatible("3:00 AM", "11:00 PM"));
-            Assert.False(testProgram.AreStartAndEndCompatible("12:00 AM", "6:00 PM"));
-            Assert.False(testProgram.AreStartAndEndCompatible("1:00 AM", "6:28 PM"));
+            Assert.False(testProgram.StartAreAndEndCompatible("3:00 AM", "11:00 PM"));
+            Assert.False(testProgram.StartAreAndEndCompatible("12:00 AM", "6:00 PM"));
+            Assert.False(testProgram.StartAreAndEndCompatible("1:00 AM", "6:28 PM"));
+        }
+
+        [Fact]
+        public void WrapperFunctionReturnsResultIfPossible()
+        {
+            Assert.Equal("110", testProgram.ParseAndCalculate("9:00 PM", "3:00 AM", "A"));
+            Assert.Equal("36", testProgram.ParseAndCalculate("5:00 PM", "8:00 PM", "B"));
+        }
+
+        [Fact]
+        public void WrapperFunctionReturnsErrorIfInputIsIncorrect()
+        {
+            Assert.Equal("Error: End Time occurs before Start Time. Please correct your start and end time",
+                testProgram.ParseAndCalculate("11:00 AM", "6:00 PM", "A"));
         }
     }
 }

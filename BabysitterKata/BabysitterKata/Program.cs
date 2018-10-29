@@ -44,7 +44,7 @@ namespace BabysitterKata
             return timePortion;
         }
 
-        public bool AreStartAndEndCompatible(string startTime, string endTime)
+        public bool StartAreAndEndCompatible(string startTime, string endTime)
         {
             var startTimeAndAmPmSplit = startTime.Split(" ");
             var startTimePortion = startTimeAndAmPmSplit[0];
@@ -65,6 +65,16 @@ namespace BabysitterKata
                 return false;
 
             return true;
+        }
+
+        public string ParseAndCalculate(string startTime, string endTime, string family)
+        {
+            if (!StartAreAndEndCompatible(startTime, endTime))
+                return "Error: End Time occurs before Start Time. Please correct your start and end time";
+
+
+
+            return RateCalculator.GetRateForNight(startTime, endTime, family).ToString();
         }
     }
 }
