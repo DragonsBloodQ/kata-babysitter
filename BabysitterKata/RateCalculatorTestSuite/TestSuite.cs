@@ -90,6 +90,7 @@ namespace RateCalculatorTestSuite
             Assert.Equal("5:00", testProgram.HandleRawStartTime("5:00 PM"));
             Assert.Equal("11:00", testProgram.HandleRawStartTime("11:00 PM"));
             Assert.Equal("3:00", testProgram.HandleRawStartTime("3:00 AM"));
+            Assert.Equal("12:00", testProgram.HandleRawStartTime("12:00 AM"));
         }
 
         [Fact]
