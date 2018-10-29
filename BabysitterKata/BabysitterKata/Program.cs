@@ -33,8 +33,10 @@ namespace BabysitterKata
 
             var hourValue = Convert.ToInt32(timePortion.Split(":")[0]);
 
-            if ((hourValue >= 5 && amPm == "AM") ||
-                (hourValue <= 4 && amPm == "PM"))
+            int normalizedHour = Global.NormalizeTime(hourValue);
+
+            if ((normalizedHour <= 6 && amPm == "AM") ||
+                (normalizedHour > 6 && amPm == "PM"))
                 return "End time is too late";
 
             return timePortion;

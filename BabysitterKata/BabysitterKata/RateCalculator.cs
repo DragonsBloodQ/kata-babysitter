@@ -52,8 +52,8 @@ namespace BabysitterKata
 
             // Given the range of times during which babysitting can take place, we
             // are able to normalize around the 5PM early start time.
-            int normalizedStart = NormalizeTime(startHour);
-            int normalizedEnd = NormalizeTime(endHour);
+            int normalizedStart = Global.NormalizeTime(startHour);
+            int normalizedEnd = Global.NormalizeTime(endHour);
 
             var hourBreakdown = Enumerable.Range(normalizedStart, normalizedEnd - normalizedStart);
 
@@ -117,18 +117,6 @@ namespace BabysitterKata
             var afterNine = hourBreakdown.Count(x => x > 3);
 
             return new[] { beforeNine, afterNine };
-        }
-
-        private static int NormalizeTime(int time)
-        {
-            if (time <= 4)
-            {
-                return time + 7;
-            }
-            else
-            {
-                return time - 5;
-            }
         }
     }
 }
