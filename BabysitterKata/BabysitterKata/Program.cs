@@ -24,5 +24,20 @@ namespace BabysitterKata
 
             return timePortion;
         }
+
+        public string HandleRawEndTime(string rawInput)
+        {
+            var timeAndAmPmSplit = rawInput.Split(" ");
+            var timePortion = timeAndAmPmSplit[0];
+            var amPm = timeAndAmPmSplit[1];
+
+            var hourValue = Convert.ToInt32(timePortion.Split(":")[0]);
+
+            if ((hourValue >= 5 && amPm == "AM") ||
+                (hourValue <= 4 && amPm == "PM"))
+                return "End time is too late";
+
+            return timePortion;
+        }
     }
 }

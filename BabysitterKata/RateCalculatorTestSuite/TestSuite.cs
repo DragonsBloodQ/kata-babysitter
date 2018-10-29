@@ -91,5 +91,12 @@ namespace RateCalculatorTestSuite
             Assert.Equal("11:00", testProgram.HandleRawStartTime("11:00 PM"));
             Assert.Equal("3:00", testProgram.HandleRawStartTime("3:00 AM"));
         }
+
+        [Fact]
+        public void EndTimeErrorHandlingMethodProperlyHandlesEndTimeThatIsTooLate()
+        {
+            Assert.Equal("End time is too late", testProgram.HandleRawEndTime("5:00 AM"));
+            Assert.Equal("End time is too late", testProgram.HandleRawEndTime("3:00 PM"));
+        }
     }
 }
