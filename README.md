@@ -1,5 +1,16 @@
 # Babysitter Kata
 
+This has been built as a .NET Core 2.1 app. It will build and run on any machine running .NET Core version 2.1 or higher.
+
+## Instructions to build and run:
+1. Clone repository
+2. Navigate to "\kata-babysitter\BabysitterKata" folder in the clone destination directory
+3. Using your CLI, type in `dotnet build -c Release`
+4. Using your CLI, navigate to BabysitterKata\bin\Release\netcoreapp2.1 ('cd "BabysitterKata\bin\Release\netcoreapp2.1"' on Windows,<br>
+'cd BabysitterKata/bin/Release/netcoreapp2.1' on Unix-based system)
+5. Using your CLI, enter 'dotnet babysitterkata.dll'
+
+--- ORIGINAL ---
 ## Background
 This kata simulates a babysitter working and getting paid for one night.  The rules are pretty straight forward.
 
