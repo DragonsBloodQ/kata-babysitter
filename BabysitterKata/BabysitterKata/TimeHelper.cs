@@ -10,9 +10,10 @@ namespace BabysitterKata
         public string TimeValue { get; }
         public string AmPm { get; }
 
-        private string[] _splitTime { get; set; }
-
+        public int NormalizedTime { get; }
         public int HourValue => Convert.ToInt32(_splitTime[0]);
+
+        private string[] _splitTime { get; set; }
 
         internal TimeHelper(string rawTime)
         {
@@ -23,6 +24,8 @@ namespace BabysitterKata
                 AmPm = timeAndAmPmSplit[1] ;
 
             _splitTime = TimeValue.Split(":");
+
+            NormalizedTime = Global.NormalizeTime(HourValue);
         }
     }
 }
