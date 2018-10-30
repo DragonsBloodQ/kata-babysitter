@@ -79,7 +79,15 @@ namespace BabysitterKata
             if (!StartAreAndEndCompatible(startTime, endTime))
                 return "Error: End Time occurs before Start Time. Please correct your start and end time";
 
-            return RateCalculator.GetRateForNight(startTime, endTime, family).ToString();
+            try
+            {
+                return RateCalculator.GetRateForNight(startTime, endTime, family).ToString();
+            }
+            catch (FormatException fe)
+            {
+                return $"Error: {fe.Message}";
+                
+            }
         }
     }
 }

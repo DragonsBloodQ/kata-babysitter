@@ -69,7 +69,7 @@ namespace BabysitterKata
                     return FamilyCHourBreakDown(hourBreakdown);
 
                 default:
-                    throw new FormatException("Family indicator not recognized. Please try again");
+                    throw new FormatException("Invalid entry for family indicator. Please enter A, B, or C.");
             }
         }
 
@@ -92,7 +92,15 @@ namespace BabysitterKata
 
         public static int GetRateForNight(string startTime, string endTime, string family)
         {
-            int[] hoursSplit = GetHoursSplit(startTime, endTime, family).ToArray();
+            int[] hoursSplit;
+            try
+            {
+                hoursSplit = GetHoursSplit(startTime, endTime, family).ToArray();
+            }
+            catch(FormatException)
+            {
+                throw;
+            }
 
             switch (family)
             {
@@ -105,10 +113,11 @@ namespace BabysitterKata
 
                 case "C":
                     return FamilyCBeforeNine(hoursSplit[0]) + FamilyCAfterNine(hoursSplit[1]);
-
-                default:
-                    throw new FormatException("Family indicator not recognized. Please try again");
             }
+
+            // Default case. Needed for code to compile. Can be used in the future
+            // to check for failstate.
+            return -1;
         }
 
         private static IEnumerable<int> FamilyCHourBreakDown(IEnumerable<int> hourBreakdown)
