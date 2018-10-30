@@ -1,5 +1,11 @@
 # Babysitter Kata
 
+Please find enclosed my submission to Pillar for consideration of employment.
+
+I designed this application to reach a middle ground between covering many scenarios and error cases while avoiding
+an attempt to cover every possible error that might arise. I believe this meshes well with Pillar's goal to deliver a minimum
+viable product, while allowing for modifications to be made at a future time.
+
 This has been built as a .NET Core 2.1 app. It will build and run on any machine running .NET Core version 2.1 or higher.
 
 ## Instructions to build and run:
