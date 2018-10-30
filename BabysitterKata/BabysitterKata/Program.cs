@@ -52,19 +52,15 @@ namespace BabysitterKata
 
         private static string HandleRawTime(string rawInput, string startOrEnd)
         {
-            string[] timeAndAmPmSplit = rawInput.Split(" ");
-            string timePortion = timeAndAmPmSplit[0];
-            string amPm = timeAndAmPmSplit[1];
+            var convertedTime = new TimeHelper(rawInput);
 
-            var hourValue = Convert.ToInt32(timePortion.Split(":")[0]);
+            int normalizedHour = Global.NormalizeTime(convertedTime.HourValue);
 
-            int normalizedHour = Global.NormalizeTime(hourValue);
-
-            if ((normalizedHour <= 6 && amPm == "AM") ||
-                (normalizedHour > 6 && amPm == "PM"))
+            if ((normalizedHour <= 6 && convertedTime.AmPm == "AM") ||
+                (normalizedHour > 6 && convertedTime.AmPm == "PM"))
                 return TimeOutOfBoundsMessage(startOrEnd);
 
-            return timePortion;
+            return convertedTime.TimeValue;
         }
 
         private static string TimeOutOfBoundsMessage(string startOrEnd)
@@ -126,7 +122,6 @@ namespace BabysitterKata
             catch (FormatException fe)
             {
                 return $"Error: {fe.Message}";
-                
             }
         }
     }
