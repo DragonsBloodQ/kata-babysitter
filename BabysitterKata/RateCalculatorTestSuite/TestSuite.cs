@@ -139,6 +139,10 @@ namespace RateCalculatorTestSuite
                 "1 or 2 digits).",
                 Program.ParseAndCalculate("6;00 PM", "12:00 AM", "B"));
 
+            Assert.Equal("Error: Invalid input for start time. Time value must follow the following format: h:mm. (Hour can be" +
+                "1 or 2 digits).",
+                Program.ParseAndCalculate("6;00 PM", "12:00 AM", "B"));
+
             Assert.Equal("Error: Invalid entry for family indicator. Please enter A, B, or C.",
                 Program.ParseAndCalculate("5:00 PM", "8:00 PM", "$"));
         }
