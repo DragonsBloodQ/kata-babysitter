@@ -128,6 +128,25 @@ namespace RateCalculatorTestSuite
         {
             Assert.Equal("Error: End Time occurs before Start Time. Please correct your start and end time",
                 testProgram.ParseAndCalculate("11:00 AM", "6:00 PM", "A"));
+
+            Assert.Equal("Error: Invalid input for start time.",
+                testProgram.ParseAndCalculate("hamburger", "12:00 AM", "B"));
+
+            // NOTE TO READER:
+            // After some deliberation, I've decided that this is unnecessary. Given the range
+            // of allowable start and end times, and the way I've chosen to work under those
+            // constraints, I don't see a reason to distinguish between "end before start"
+            // scenarios and "start too early"/"end too late" scenarios. I believe this aligns
+            // with Pillar's stated goal to provide the minimum viable product, and scale it
+            // in the future.
+
+            // If the customer were to request that these be split up, that is something that
+            // could be considered at a later date. In addition, in a real-life scenario such
+            // as this one, I would defer to my partner (in pair programming), or the lead
+            // for the project to figure out the right way around this issue.
+
+            // Unnecessary test provided for reader context.
+            //     Assert.Equal("Error: Start Time is too early.", testProgram.ParseAndCalculate("3:00 PM", "11:00 PM", "B"));
         }
     }
 }

@@ -48,13 +48,11 @@ namespace BabysitterKata
         {
             var startTimeAndAmPmSplit = startTime.Split(" ");
             var startTimePortion = startTimeAndAmPmSplit[0];
-            var startTimeAmPm = startTimeAndAmPmSplit[1];
 
             var startTimeHourValue = Convert.ToInt32(startTimePortion.Split(":")[0]);
 
             var endTimeAndAmPmSplit = endTime.Split(" ");
             var endTimePortion = endTimeAndAmPmSplit[0];
-            var endTimeAmPm = endTimeAndAmPmSplit[1];
 
             var endTimeHourValue = Convert.ToInt32(endTimePortion.Split(":")[0]);
 
@@ -69,10 +67,13 @@ namespace BabysitterKata
 
         public string ParseAndCalculate(string startTime, string endTime, string family)
         {
+            var splitStartTime = startTime.Split(" ");
+
+            if (splitStartTime.Length < 2)
+                return "Error: Invalid input for start time.";
+
             if (!StartAreAndEndCompatible(startTime, endTime))
                 return "Error: End Time occurs before Start Time. Please correct your start and end time";
-
-
 
             return RateCalculator.GetRateForNight(startTime, endTime, family).ToString();
         }
