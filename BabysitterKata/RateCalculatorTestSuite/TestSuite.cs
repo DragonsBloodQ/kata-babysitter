@@ -77,8 +77,8 @@ namespace RateCalculatorTestSuite
         [Fact]
         public void StartTimeErrorHandlingMethodProperlyHandlesStartTimeThatIsTooEarly()
         {
-            Assert.Equal("Start time is too early", Program.HandleRawStartTime("4:00 PM"));
-            Assert.Equal("Start time is too early", Program.HandleRawStartTime("10:00 AM"));
+            Assert.Equal("Start time is too early.", Program.HandleRawStartTime("4:00 PM"));
+            Assert.Equal("Start time is too early.", Program.HandleRawStartTime("10:00 AM"));
         }
 
         [Fact]

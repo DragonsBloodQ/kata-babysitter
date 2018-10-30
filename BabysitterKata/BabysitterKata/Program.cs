@@ -9,19 +9,34 @@ namespace BabysitterKata
         {
             while (true)
             {
+                Console.WriteLine("Input 'end' at any time to exit");
                 Console.WriteLine("Please enter your start time.");
                 var startTime = Console.ReadLine();
+
+                if (startTime == "end")
+                    break;
+
                 Console.WriteLine("Please enter your end time.");
                 var endTime = Console.ReadLine();
+
+                if (endTime == "end")
+                    break;
+
                 Console.WriteLine("Please enter which family you worked for");
                 var family = Console.ReadLine();
+
+                if (family == "end")
+                    break;
+
                 var parsedAndCalculated = ParseAndCalculate(startTime, endTime, family);
                 Console.WriteLine(parsedAndCalculated);
 
                 if (int.TryParse(parsedAndCalculated, out int result))
+                    Console.WriteLine($"Amount earned for night: {parsedAndCalculated}");
                     break;
             }
 
+            Console.WriteLine("Press enter to exit");
             Console.ReadLine();
         }
 
@@ -56,7 +71,7 @@ namespace BabysitterKata
                 (normalizedHour > 6 && amPm == "PM"))
                 return "End time is too late";
 
-            return $"Amount earned for night: {timePortion}";
+            return timePortion;
         }
 
         public static bool StartAreAndEndCompatible(string startTime, string endTime)

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabysitterKata", "BabysitterKata\BabysitterKata.csproj", "{C08D5577-4AD7-46D0-A632-14DB89C7703A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabysitterKata", "BabysitterKata\BabysitterKata.csproj", "{C08D5577-4AD7-46D0-A632-14DB89C7703A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateCalculatorTestSuite", "RateCalculatorTestSuite\RateCalculatorTestSuite.csproj", "{F1B377AE-E1A4-4C89-8C3F-77A9DCAC0F28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabysitterKataTestSuite", "RateCalculatorTestSuite\BabysitterKataTestSuite.csproj", "{F1B377AE-E1A4-4C89-8C3F-77A9DCAC0F28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
