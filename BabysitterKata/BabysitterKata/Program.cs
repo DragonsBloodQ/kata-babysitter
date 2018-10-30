@@ -11,24 +11,24 @@ namespace BabysitterKata
             {
                 Console.WriteLine("Input 'end' at any time to exit");
                 Console.WriteLine("Please enter your start time.");
-                var startTime = Console.ReadLine();
+                string startTime = Console.ReadLine();
 
                 if (startTime == "end")
                     break;
 
                 Console.WriteLine("Please enter your end time.");
-                var endTime = Console.ReadLine();
+                string endTime = Console.ReadLine();
 
                 if (endTime == "end")
                     break;
 
                 Console.WriteLine("Please enter which family you worked for");
-                var family = Console.ReadLine();
+                string family = Console.ReadLine();
 
                 if (family == "end")
                     break;
 
-                var parsedAndCalculated = ParseAndCalculate(startTime, endTime, family);
+                string parsedAndCalculated = ParseAndCalculate(startTime, endTime, family);
                 Console.WriteLine(parsedAndCalculated);
 
                 if (int.TryParse(parsedAndCalculated, out int result))
@@ -42,9 +42,9 @@ namespace BabysitterKata
 
         public static string HandleRawStartTime(string rawInput)
         {
-            var timeAndAmPmSplit = rawInput.Split(" ");
-            var timePortion = timeAndAmPmSplit[0];
-            var amPm = timeAndAmPmSplit[1];
+            string[] timeAndAmPmSplit = rawInput.Split(" ");
+            string timePortion = timeAndAmPmSplit[0];
+            string amPm = timeAndAmPmSplit[1];
 
             var hourValue = Convert.ToInt32(timePortion.Split(":")[0]);
 
@@ -59,9 +59,9 @@ namespace BabysitterKata
 
         public static string HandleRawEndTime(string rawInput)
         {
-            var timeAndAmPmSplit = rawInput.Split(" ");
-            var timePortion = timeAndAmPmSplit[0];
-            var amPm = timeAndAmPmSplit[1];
+            string[] timeAndAmPmSplit = rawInput.Split(" ");
+            string timePortion = timeAndAmPmSplit[0];
+            string amPm = timeAndAmPmSplit[1];
 
             var hourValue = Convert.ToInt32(timePortion.Split(":")[0]);
 
@@ -76,13 +76,13 @@ namespace BabysitterKata
 
         public static bool StartAreAndEndCompatible(string startTime, string endTime)
         {
-            var startTimeAndAmPmSplit = startTime.Split(" ");
-            var startTimePortion = startTimeAndAmPmSplit[0];
+            string[] startTimeAndAmPmSplit = startTime.Split(" ");
+            string startTimePortion = startTimeAndAmPmSplit[0];
 
             var startTimeHourValue = Convert.ToInt32(startTimePortion.Split(":")[0]);
 
-            var endTimeAndAmPmSplit = endTime.Split(" ");
-            var endTimePortion = endTimeAndAmPmSplit[0];
+            string[] endTimeAndAmPmSplit = endTime.Split(" ");
+            string endTimePortion = endTimeAndAmPmSplit[0];
 
             var endTimeHourValue = Convert.ToInt32(endTimePortion.Split(":")[0]);
 
@@ -97,7 +97,7 @@ namespace BabysitterKata
 
         public static string ParseAndCalculate(string startTime, string endTime, string family)
         {
-            var splitStartTime = startTime.Split(" ");
+            string[] splitStartTime = startTime.Split(" ");
 
             if (splitStartTime.Length < 2)
                 return "Error: Invalid input for start time. Time entry must contain a time value and an AM/PM indicator.";

@@ -75,17 +75,17 @@ namespace BabysitterKata
 
         private static IEnumerable<int> FamilyAHourBreakDown(IEnumerable<int> hourBreakdown)
         {
-            var beforeEleven = hourBreakdown.Count(x => x <= 5);
-            var afterEleven = hourBreakdown.Count(x => x > 5);
+            int beforeEleven = hourBreakdown.Count(x => x <= 5);
+            int afterEleven = hourBreakdown.Count(x => x > 5);
 
             return new[] { beforeEleven, afterEleven };
         }
 
         private static IEnumerable<int> FamilyBHourBreakDown(IEnumerable<int> hourBreakdown)
         {
-            var beforeTen = hourBreakdown.Count(x => x <= 4);
-            var betweenTenAndTwelve = hourBreakdown.Count(x => x > 4 && x <= 6);
-            var afterTwelve = hourBreakdown.Count(x => x > 6);
+            int beforeTen = hourBreakdown.Count(x => x <= 4);
+            int betweenTenAndTwelve = hourBreakdown.Count(x => x > 4 && x <= 6);
+            int afterTwelve = hourBreakdown.Count(x => x > 6);
 
             return new[] { beforeTen, betweenTenAndTwelve, afterTwelve };
         }
@@ -122,8 +122,8 @@ namespace BabysitterKata
 
         private static IEnumerable<int> FamilyCHourBreakDown(IEnumerable<int> hourBreakdown)
         {
-            var beforeNine = hourBreakdown.Count(x => x <= 3);
-            var afterNine = hourBreakdown.Count(x => x > 3);
+            int beforeNine = hourBreakdown.Count(x => x <= 3);
+            int afterNine = hourBreakdown.Count(x => x > 3);
 
             return new[] { beforeNine, afterNine };
         }
