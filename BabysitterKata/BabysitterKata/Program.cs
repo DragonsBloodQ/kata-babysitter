@@ -54,10 +54,8 @@ namespace BabysitterKata
         {
             var convertedTime = new TimeHelper(rawInput);
 
-            int normalizedHour = convertedTime.NormalizedTime;
-
-            if ((normalizedHour <= 6 && convertedTime.AmPm == "AM") ||
-                (normalizedHour > 6 && convertedTime.AmPm == "PM"))
+            if ((convertedTime.NormalizedTime <= 6 && convertedTime.AmPm == "AM") ||
+                (convertedTime.NormalizedTime > 6 && convertedTime.AmPm == "PM"))
                 return TimeOutOfBoundsMessage(startOrEnd);
 
             return convertedTime.TimeValue;
@@ -79,11 +77,8 @@ namespace BabysitterKata
         {
             var startTimeHelper = new TimeHelper(startTime);
             var endTimeHelper = new TimeHelper(endTime);
-            
-            int normalizedStart = startTimeHelper.NormalizedTime;
-            int normalizedEnd = endTimeHelper.NormalizedTime;
 
-            if (normalizedEnd < normalizedStart)
+            if (endTimeHelper.NormalizedTime < startTimeHelper.NormalizedTime)
                 return false;
 
             return true;

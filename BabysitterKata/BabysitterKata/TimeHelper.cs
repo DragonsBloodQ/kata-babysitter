@@ -25,7 +25,21 @@ namespace BabysitterKata
 
             _splitTime = TimeValue.Split(":");
 
-            NormalizedTime = Global.NormalizeTime(HourValue);
+            NormalizedTime = NormalizeTime();
+        }
+
+        // Given the range of times during which babysitting can take place, we
+        // are able to normalize around the 5PM minimum start time.
+        private int NormalizeTime()
+        {
+            if (HourValue <= 4)
+            {
+                return HourValue + 7;
+            }
+            else
+            {
+                return HourValue - 5;
+            }
         }
     }
 }
