@@ -7,9 +7,6 @@ namespace RateCalculatorTestSuite
 {
     public class TestSuite
     {
-        // Test level instance of Program object.
-        Program testProgram = new Program();
-
         [Fact]
         public void FamilyAProperlyPaysFifteenDollarsPerHourBeforeElevenPM()
         {
@@ -80,47 +77,47 @@ namespace RateCalculatorTestSuite
         [Fact]
         public void StartTimeErrorHandlingMethodProperlyHandlesStartTimeThatIsTooEarly()
         {
-            Assert.Equal("Start time is too early", testProgram.HandleRawStartTime("4:00 PM"));
-            Assert.Equal("Start time is too early", testProgram.HandleRawStartTime("10:00 AM"));
+            Assert.Equal("Start time is too early", Program.HandleRawStartTime("4:00 PM"));
+            Assert.Equal("Start time is too early", Program.HandleRawStartTime("10:00 AM"));
         }
 
         [Fact]
         public void StartTimeErrorHandlingMethodProperlyReturnsValidStartTime()
         {
-            Assert.Equal("5:00", testProgram.HandleRawStartTime("5:00 PM"));
-            Assert.Equal("11:00", testProgram.HandleRawStartTime("11:00 PM"));
-            Assert.Equal("3:00", testProgram.HandleRawStartTime("3:00 AM"));
-            Assert.Equal("12:00", testProgram.HandleRawStartTime("12:00 AM"));
+            Assert.Equal("5:00", Program.HandleRawStartTime("5:00 PM"));
+            Assert.Equal("11:00", Program.HandleRawStartTime("11:00 PM"));
+            Assert.Equal("3:00", Program.HandleRawStartTime("3:00 AM"));
+            Assert.Equal("12:00", Program.HandleRawStartTime("12:00 AM"));
         }
 
         [Fact]
         public void EndTimeErrorHandlingMethodProperlyHandlesEndTimeThatIsTooLate()
         {
-            Assert.Equal("End time is too late", testProgram.HandleRawEndTime("5:00 AM"));
-            Assert.Equal("End time is too late", testProgram.HandleRawEndTime("3:00 PM"));
+            Assert.Equal("End time is too late", Program.HandleRawEndTime("5:00 AM"));
+            Assert.Equal("End time is too late", Program.HandleRawEndTime("3:00 PM"));
         }
 
         [Fact]
         public void EndTimeErrorHandlingMethodProperlyReturnsValidEndTime()
         {
-            Assert.Equal("8:00", testProgram.HandleRawEndTime("8:00 PM"));
-            Assert.Equal("12:00", testProgram.HandleRawEndTime("12:00 AM"));
-            Assert.Equal("3:48", testProgram.HandleRawEndTime("3:48 AM"));
+            Assert.Equal("8:00", Program.HandleRawEndTime("8:00 PM"));
+            Assert.Equal("12:00", Program.HandleRawEndTime("12:00 AM"));
+            Assert.Equal("3:48", Program.HandleRawEndTime("3:48 AM"));
         }
 
         [Fact]
         public void EndBeforeStartReturnsFalseWhenCheckedForCompatibility()
         {
-            Assert.False(testProgram.StartAreAndEndCompatible("3:00 AM", "11:00 PM"));
-            Assert.False(testProgram.StartAreAndEndCompatible("12:00 AM", "6:00 PM"));
-            Assert.False(testProgram.StartAreAndEndCompatible("1:00 AM", "6:28 PM"));
+            Assert.False(Program.StartAreAndEndCompatible("3:00 AM", "11:00 PM"));
+            Assert.False(Program.StartAreAndEndCompatible("12:00 AM", "6:00 PM"));
+            Assert.False(Program.StartAreAndEndCompatible("1:00 AM", "6:28 PM"));
         }
 
         [Fact]
         public void WrapperFunctionReturnsResultIfPossible()
         {
-            Assert.Equal("110", testProgram.ParseAndCalculate("9:00 PM", "3:00 AM", "A"));
-            Assert.Equal("36", testProgram.ParseAndCalculate("5:00 PM", "8:00 PM", "B"));
+            Assert.Equal("110", Program.ParseAndCalculate("9:00 PM", "3:00 AM", "A"));
+            Assert.Equal("36", Program.ParseAndCalculate("5:00 PM", "8:00 PM", "B"));
         }
 
         [Fact]
@@ -130,33 +127,20 @@ namespace RateCalculatorTestSuite
             // to cover all possible errors in one test because I am already checking the
             // individual error states separately above.
             Assert.Equal("Error: End Time occurs before Start Time. Please correct your start and end time",
-                testProgram.ParseAndCalculate("11:00 AM", "6:00 PM", "A"));
+                Program.ParseAndCalculate("11:00 AM", "6:00 PM", "A"));
+
+            Assert.Equal("Error: Start time is too early.",
+                Program.ParseAndCalculate("8:00 AM", "4:00 AM", "C"));
 
             Assert.Equal("Error: Invalid input for start time. Time entry must contain a time value and an AM/PM indicator.",
-                testProgram.ParseAndCalculate("hamburger", "12:00 AM", "B"));
+                Program.ParseAndCalculate("hamburger", "12:00 AM", "B"));
 
             Assert.Equal("Error: Invalid input for start time. Time value must follow the following format: h:mm. (Hour can be" +
                 "1 or 2 digits).",
-                testProgram.ParseAndCalculate("6;00 PM", "12:00 AM", "B"));
+                Program.ParseAndCalculate("6;00 PM", "12:00 AM", "B"));
 
             Assert.Equal("Error: Invalid entry for family indicator. Please enter A, B, or C.",
-                testProgram.ParseAndCalculate("5:00 PM", "8:00 PM", "$"));
-
-            // NOTE TO READER:
-            // After some deliberation, I've decided that this is unnecessary. Given the range
-            // of allowable start and end times, and the way I've chosen to work under those
-            // constraints, I don't see a reason to distinguish between "end before start"
-            // scenarios and "start too early"/"end too late" scenarios. I believe this aligns
-            // with Pillar's stated goal to provide the minimum viable product, and scale it
-            // in the future.
-
-            // If the customer were to request that these be split up, that is something that
-            // could be considered at a later date. In addition, in a real-life scenario such
-            // as this one, I would defer to my partner (in pair programming), or the lead
-            // for the project to figure out the right way around this issue.
-
-            // Unnecessary test provided for reader context.
-            //     Assert.Equal("Error: Start Time is too early.", testProgram.ParseAndCalculate("3:00 PM", "11:00 PM", "B"));
+                Program.ParseAndCalculate("5:00 PM", "8:00 PM", "$"));
         }
     }
 }
