@@ -126,13 +126,17 @@ namespace RateCalculatorTestSuite
         [Fact]
         public void WrapperFunctionReturnsErrorIfInputIsIncorrect()
         {
+            // It occurred to me that this test might be trying to do too much. I decided
+            // to cover all possible errors in one test because I am already checking the
+            // individual error states separately above.
             Assert.Equal("Error: End Time occurs before Start Time. Please correct your start and end time",
                 testProgram.ParseAndCalculate("11:00 AM", "6:00 PM", "A"));
 
             Assert.Equal("Error: Invalid input for start time. Time entry must contain a time value and an AM/PM indicator.",
                 testProgram.ParseAndCalculate("hamburger", "12:00 AM", "B"));
 
-            Assert.Equal("Error: Invalid input for start time.",
+            Assert.Equal("Error: Invalid input for start time. Time value must follow the following format: h:mm. (Hour can be" +
+                "1 or 2 digits).",
                 testProgram.ParseAndCalculate("6;00 PM", "12:00 AM", "B"));
 
             // NOTE TO READER:

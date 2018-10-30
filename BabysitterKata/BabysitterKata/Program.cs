@@ -73,7 +73,8 @@ namespace BabysitterKata
                 return "Error: Invalid input for start time. Time entry must contain a time value and an AM/PM indicator.";
 
             if (!splitStartTime[0].Contains(":"))
-                return "Error: Invalid input for start time.";
+                return "Error: Invalid input for start time. Time value must follow the following format: h:mm. (Hour can be" +
+                "1 or 2 digits).";
 
             if (!StartAreAndEndCompatible(startTime, endTime))
                 return "Error: End Time occurs before Start Time. Please correct your start and end time";
