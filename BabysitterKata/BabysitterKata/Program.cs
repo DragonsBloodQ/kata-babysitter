@@ -42,22 +42,15 @@ namespace BabysitterKata
 
         public static string HandleRawStartTime(string rawInput)
         {
-            string[] timeAndAmPmSplit = rawInput.Split(" ");
-            string timePortion = timeAndAmPmSplit[0];
-            string amPm = timeAndAmPmSplit[1];
-
-            var hourValue = Convert.ToInt32(timePortion.Split(":")[0]);
-
-            int normalizedHour = Global.NormalizeTime(hourValue);
-
-            if ((normalizedHour <= 6 && amPm == "AM") ||
-                (normalizedHour > 6 && amPm == "PM"))
-                return "Start time is too early.";
-
-            return timePortion;
+            return HandleRawTime(rawInput, "start");
         }
 
         public static string HandleRawEndTime(string rawInput)
+        {
+            return HandleRawTime(rawInput, "end");
+        }
+
+        private static string HandleRawTime(string rawInput, string startOrEnd)
         {
             string[] timeAndAmPmSplit = rawInput.Split(" ");
             string timePortion = timeAndAmPmSplit[0];
@@ -69,9 +62,21 @@ namespace BabysitterKata
 
             if ((normalizedHour <= 6 && amPm == "AM") ||
                 (normalizedHour > 6 && amPm == "PM"))
-                return "End time is too late";
+                return TimeOutOfBoundsMessage(startOrEnd);
 
             return timePortion;
+        }
+
+        private static string TimeOutOfBoundsMessage(string startOrEnd)
+        {
+            if (startOrEnd == "start")
+                return "Start time is too early.";
+            else if (startOrEnd == "end")
+                return "End time is too late";
+
+            // Default case. Shouldn't ever be thrown, but can be used to detect a
+            // failstate down the road.
+            return "***";
         }
 
         public static bool StartAreAndEndCompatible(string startTime, string endTime)
