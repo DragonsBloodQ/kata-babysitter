@@ -129,7 +129,7 @@ namespace RateCalculatorTestSuite
             Assert.Equal("Error: End Time occurs before Start Time. Please correct your start and end time",
                 testProgram.ParseAndCalculate("11:00 AM", "6:00 PM", "A"));
 
-            Assert.Equal("Error: Invalid input for start time.",
+            Assert.Equal("Error: Invalid input for start time. Time entry must contain a time value and an AM/PM indicator.",
                 testProgram.ParseAndCalculate("hamburger", "12:00 AM", "B"));
 
             Assert.Equal("Error: Invalid input for start time.",

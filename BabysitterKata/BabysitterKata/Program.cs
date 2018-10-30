@@ -70,7 +70,7 @@ namespace BabysitterKata
             var splitStartTime = startTime.Split(" ");
 
             if (splitStartTime.Length < 2)
-                return "Error: Invalid input for start time.";
+                return "Error: Invalid input for start time. Time entry must contain a time value and an AM/PM indicator.";
 
             if (!splitStartTime[0].Contains(":"))
                 return "Error: Invalid input for start time.";
