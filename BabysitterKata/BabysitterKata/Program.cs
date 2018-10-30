@@ -3,14 +3,21 @@ using System.Collections.Generic;
 
 namespace BabysitterKata
 {
-    public class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Please enter your start time.");
+            var startTime = Console.ReadLine();
+            Console.WriteLine("Please enter your end time.");
+            var endTime = Console.ReadLine();
+            Console.WriteLine("Please enter which family you worked for");
+            var family = Console.ReadLine();
+            Console.WriteLine(ParseAndCalculate(startTime, endTime, family));
+            Console.ReadLine();
         }
 
-        public string HandleRawStartTime(string rawInput)
+        public static string HandleRawStartTime(string rawInput)
         {
             var timeAndAmPmSplit = rawInput.Split(" ");
             var timePortion = timeAndAmPmSplit[0];
@@ -22,12 +29,12 @@ namespace BabysitterKata
 
             if ((normalizedHour <= 6 && amPm == "AM") ||
                 (normalizedHour > 6 && amPm == "PM"))
-                return "Start time is too early";
+                return "Start time is too early.";
 
             return timePortion;
         }
 
-        public string HandleRawEndTime(string rawInput)
+        public static string HandleRawEndTime(string rawInput)
         {
             var timeAndAmPmSplit = rawInput.Split(" ");
             var timePortion = timeAndAmPmSplit[0];
@@ -44,7 +51,7 @@ namespace BabysitterKata
             return timePortion;
         }
 
-        public bool StartAreAndEndCompatible(string startTime, string endTime)
+        public static bool StartAreAndEndCompatible(string startTime, string endTime)
         {
             var startTimeAndAmPmSplit = startTime.Split(" ");
             var startTimePortion = startTimeAndAmPmSplit[0];
@@ -65,7 +72,7 @@ namespace BabysitterKata
             return true;
         }
 
-        public string ParseAndCalculate(string startTime, string endTime, string family)
+        public static string ParseAndCalculate(string startTime, string endTime, string family)
         {
             var splitStartTime = startTime.Split(" ");
 
@@ -78,6 +85,10 @@ namespace BabysitterKata
 
             if (!StartAreAndEndCompatible(startTime, endTime))
                 return "Error: End Time occurs before Start Time. Please correct your start and end time";
+
+            var parsedStart = HandleRawStartTime(startTime);
+            if (!parsedStart.Contains(":"))
+                return $"Error: {parsedStart}";
 
             try
             {
