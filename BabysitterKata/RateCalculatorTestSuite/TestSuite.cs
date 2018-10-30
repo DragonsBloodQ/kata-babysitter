@@ -132,6 +132,9 @@ namespace RateCalculatorTestSuite
             Assert.Equal("Error: Invalid input for start time.",
                 testProgram.ParseAndCalculate("hamburger", "12:00 AM", "B"));
 
+            Assert.Equal("Error: Invalid input for start time.",
+                testProgram.ParseAndCalculate("6;00 PM", "12:00 AM", "B"));
+
             // NOTE TO READER:
             // After some deliberation, I've decided that this is unnecessary. Given the range
             // of allowable start and end times, and the way I've chosen to work under those

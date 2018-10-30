@@ -72,6 +72,9 @@ namespace BabysitterKata
             if (splitStartTime.Length < 2)
                 return "Error: Invalid input for start time.";
 
+            if (!splitStartTime[0].Contains(":"))
+                return "Error: Invalid input for start time.";
+
             if (!StartAreAndEndCompatible(startTime, endTime))
                 return "Error: End Time occurs before Start Time. Please correct your start and end time";
 
