@@ -11,7 +11,6 @@ namespace BabysitterKata
         public string AmPm { get; }
 
         private string[] _splitTime { get; set; }
-        
 
         public int HourValue => Convert.ToInt32(_splitTime[0]);
 
@@ -19,7 +18,9 @@ namespace BabysitterKata
         {
             string[] timeAndAmPmSplit = rawTime.Split(" ");
             TimeValue = timeAndAmPmSplit[0];
-            AmPm = timeAndAmPmSplit[1];
+
+            if (timeAndAmPmSplit.Length > 1)
+                AmPm = timeAndAmPmSplit[1] ;
 
             _splitTime = TimeValue.Split(":");
         }

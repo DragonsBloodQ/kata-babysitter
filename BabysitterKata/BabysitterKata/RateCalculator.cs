@@ -44,16 +44,13 @@ namespace BabysitterKata
 
         public static IEnumerable<int> GetHoursSplit(string startTime, string endTime, string family)
         {
-            string startHourString = startTime.Split(":")[0];
-            int startHour = Convert.ToInt32(startHourString);
-
-            string endHourString = endTime.Split(":")[0];
-            int endHour = Convert.ToInt32(endHourString);
+            var startTimeHelper = new TimeHelper(startTime);
+            var endTimeHelper = new TimeHelper(endTime);
 
             // Given the range of times during which babysitting can take place, we
             // are able to normalize around the 5PM early start time.
-            int normalizedStart = Global.NormalizeTime(startHour);
-            int normalizedEnd = Global.NormalizeTime(endHour);
+            int normalizedStart = Global.NormalizeTime(startTimeHelper.HourValue);
+            int normalizedEnd = Global.NormalizeTime(endTimeHelper.HourValue);
 
             var hourBreakdown = Enumerable.Range(normalizedStart, normalizedEnd - normalizedStart);
 

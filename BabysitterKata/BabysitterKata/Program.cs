@@ -75,20 +75,13 @@ namespace BabysitterKata
             return "***";
         }
 
-        public static bool StartAreAndEndCompatible(string startTime, string endTime)
+        public static bool StartAndEndAreCompatible(string startTime, string endTime)
         {
-            string[] startTimeAndAmPmSplit = startTime.Split(" ");
-            string startTimePortion = startTimeAndAmPmSplit[0];
-
-            var startTimeHourValue = Convert.ToInt32(startTimePortion.Split(":")[0]);
-
-            string[] endTimeAndAmPmSplit = endTime.Split(" ");
-            string endTimePortion = endTimeAndAmPmSplit[0];
-
-            var endTimeHourValue = Convert.ToInt32(endTimePortion.Split(":")[0]);
-
-            int normalizedStart = Global.NormalizeTime(startTimeHourValue);
-            int normalizedEnd = Global.NormalizeTime(endTimeHourValue);
+            var startTimeHelper = new TimeHelper(startTime);
+            var endTimeHelper = new TimeHelper(endTime);
+            
+            int normalizedStart = Global.NormalizeTime(startTimeHelper.HourValue);
+            int normalizedEnd = Global.NormalizeTime(endTimeHelper.HourValue);
 
             if (normalizedEnd < normalizedStart)
                 return false;
@@ -107,7 +100,7 @@ namespace BabysitterKata
                 return "Error: Invalid input for start time. Time value must follow the following format: h:mm. (Hour can be" +
                 "1 or 2 digits).";
 
-            if (!StartAreAndEndCompatible(startTime, endTime))
+            if (!StartAndEndAreCompatible(startTime, endTime))
                 return "Error: End Time occurs before Start Time. Please correct your start and end time";
 
             var parsedStart = HandleRawStartTime(startTime);
